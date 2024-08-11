@@ -1,6 +1,6 @@
 zxcvbn
 pwnedpasswords
 chardet
-google-generative-ai
+google-generativeai
 termcolor
 tqdm
