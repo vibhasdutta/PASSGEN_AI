@@ -1,0 +1,6 @@
+zxcvbn
+pwnedpasswords
+chardet
+google-generative-ai
+termcolor
+tqdm
