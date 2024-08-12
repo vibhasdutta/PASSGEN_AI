@@ -3,15 +3,14 @@ from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import json
 from PASSGEN_ANALYZER import load_wordlist , analyze_password
 import threading
-import time
+from time import sleep
 from termcolor import colored
 from tqdm import tqdm
-import time
 from datetime import datetime
 
 def long_running_task():
     for _ in tqdm(range(100), desc=(colored("PROCESSING WORDLIST",'cyan')),unit=" bits",colour='cyan'):
-        time.sleep(0.09)
+        sleep(0.09)
 
 Banner = """
     ____   ___    _____ _____  ______ ______ _   __   ___     ____
@@ -62,7 +61,7 @@ while True:
         now = datetime.now()
         timestamp = now.strftime("%b/%d/%Y %I:%M %p")
         # File name with timestamp
-        output_file_name = f"PassGen_Output.txt"
+        output_file_name = f"PassGen_Output.rtf"
         user_password = input(colored("Enter your Password: ",'cyan')).lower()
         analysis = analyze_password(user_password, sorted_words, wordlist_dict)
         
@@ -80,24 +79,36 @@ while True:
 
                     **Instructions:**
                     1. Assess the password's strengths and weaknesses use the Analysis Report.
-                    2. Highlight potential risks.
-                    3. Provide a few stronger password alternatives by using the {user_password}.
-
+                    2. Provide a few stronger password alternatives by using the {user_password} as a base. Aim to improve the password's security. Avoid using the same password or similar variations.
+                    3. provide the feedback in the given format only.Use rtf format for better readability.
+                    
                     **Feedback Format:**
-                    **Timestamp:** {timestamp}
-                    1. **Strengths and Weaknesses:** 
+                    
+                    - Timestamp: {timestamp}
+
+                    - Password: {user_password}
+
+
+                    1.Strengths and Weaknesses:
+
                     - [Provide a brief assessment of strengths and weaknesses.]
 
-                    2. **Potential Risks:** 
+                    2.Potential Risks:
+
                     - [Highlight any specific risks.]
 
-                    3. **Suggestions for Improvement:** 
+                    3.Suggestions for Improvement:
+
                     - [Offer concise advice for making the password more secure.]
 
-                    4. **Password Alternatives:** 
-                    - **Option 1:** [Password] - [small explanation]
-                    - **Option 2:** [Password] - [small explanation]
-                    - **Option 3:** [Password] - [small explanation]
+                    4.Password Alternatives: 
+
+                    - Option 1: [Password]
+                    - Option 2: [Password]
+                    - Option 3: [Password]
+                    - Option 4: [Password]
+                    - Option 5: [Password]
+                    - Option 6: [Password]
                 """
         
         response = chat_history.send_message(prompt, stream=True)
