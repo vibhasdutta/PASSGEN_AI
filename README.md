@@ -40,6 +40,8 @@ This tool analyzes passwords to evaluate their strength, identify potential risk
    - To enhance password generation, you can add custom wordlists in the `PassGen_Wordlist` folder.
    - Place your `.txt` files containing wordlists in this directory to improve the variety and security of generated passwords.
 
+- *Note: I will Recommend you to download the Rockyou.txt Wordlist from this github link. And add it into the PassGen_Wordlist folder.* [ROCKYOU.TXT](https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt)
+
 4. Run the `PASSGEN_AI.py` script:
    ```
    python PASSGEN_AI.py
@@ -49,4 +51,4 @@ This tool analyzes passwords to evaluate their strength, identify potential risk
    python3 PASSGEN_AI.py
    ```
 
-*Note: Ensure you have Python installed on your system. If not, download it from the [official website](https://www.python.org/downloads/).*
+- *Note: Ensure you have Python installed on your system. If not, download it from the [official website](https://www.python.org/downloads/).*
