@@ -2,7 +2,7 @@ import google.generativeai as genai
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 import json
 from PASSGEN_ANALYZER import load_wordlist , analyze_password
-from PASSGEN_GENERATOR import gather_user_info, PasswordGen
+from PASSGEN_GENERATOR import Gather_info
 import threading
 from time import sleep
 from termcolor import colored
@@ -114,10 +114,14 @@ while True:
             print(colored(f"Response saved to {output_file_name}",'cyan'))
 
         elif choice == 'g':
-            userinfo = gather_user_info()
-            prompt,website = PasswordGen(userinfo)
+            print("Name the website for which you want to generate the password.")
+            websitename = input("Website Name: ")
+            answers = Gather_info()
+            prompt = """ Generate eight secure and meaningful passwords using a memorable passphrase approach. Each password should be 9 characters long, combining random words, numbers, uppercase and lowercase letters, and special characters. Incorporate the website name logically, creating a mini-phrase or compound word that makes sense, while using the provided words use them which make logic. Add meaningful numbers (e.g., birth year, favorite number) and naturally capitalize letters for readability. 
+            The password should not be a common phrase or easily guessable. Use the website name {} and the following words: {}.Provide only the passwords, without any explanations.
+            """.format(websitename,answers)
             response = chat_history.send_message(prompt, stream=True)
-            output_file_name = f"{website}Pass.txt"
+            output_file_name = f"Password.txt"
             with open(output_file_name, "w") as file:
                 for chunk in response:
                     print(colored(chunk.text))
